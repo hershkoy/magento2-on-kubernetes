@@ -14,6 +14,6 @@ configMapGenerator:
   - config/nginx/conf.d/default.conf
   - config/nginx/magento2.conf
 - name: config
-  env: config/common.env
+  envs: [config/common.env]
 - name: aux
-  env: config/aux.env
+  envs: [config/aux.env]

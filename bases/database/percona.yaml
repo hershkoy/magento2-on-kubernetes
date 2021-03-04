@@ -32,6 +32,7 @@ spec:
       containers:
       - args:
         - --max_allowed_packet=134217728
+        - "--ignore-db-dir=lost+found"
         volumeMounts:
         - mountPath: /var/lib/mysql
           name: data
@@ -63,12 +64,25 @@ spec:
             cpu: 100m
             memory: 256Mi
       restartPolicy: Always
+      initContainers:
+      - name: take-data-dir-ownership
+        image: alpine:3
+        # Give `mysql` user permissions a mounted volume
+        # https://stackoverflow.com/a/51195446/4360433
+        command:
+        - chown
+        - -R
+        - 999:999
+        - /var/lib/mysql
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
   volumeClaimTemplates:
   - metadata:
       name: data
     spec:
       accessModes:
-      - ReadWriteMany
+      - ReadWriteOnce
       resources:
         requests:
           storage: 10Gi

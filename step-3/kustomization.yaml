@@ -9,4 +9,4 @@ resources:
 configMapGenerator:
 - name: aux
   behavior: merge
-  env: config/aux.env
+  envs: [config/aux.env]

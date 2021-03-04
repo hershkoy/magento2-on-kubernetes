@@ -22,7 +22,7 @@ spec:
       spec:
         containers:
         - name: elasticsearch
-          env:
+          envs:
           - name: ES_JAVA_OPTS
             value: -Xms512m -Xmx512m
           resources:

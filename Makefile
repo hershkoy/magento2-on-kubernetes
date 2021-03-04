@@ -1,6 +1,6 @@
-MINIKUBE = /usr/bin/env minikube
-KUSTOMIZE = /usr/bin/env kustomize
-KUBECTL = /usr/bin/env kubectl
+MINIKUBE = minikube
+KUSTOMIZE = kustomize
+KUBECTL = kubectl
 
 ELASTIC-OPERATOR-PATH := vendor/ec-on-k8s
 ELASTIC-OPERATOR-FILE := all-in-one.yaml

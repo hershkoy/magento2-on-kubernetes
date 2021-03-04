@@ -51,7 +51,7 @@ spec:
           requests:
             cpu: 50m
             memory: 512Mi
-        env:
+        envs:
         - name: VARNISH_BACKEND_HOST
           value: web
         - name: VARNISH_BACKEND_PORT
