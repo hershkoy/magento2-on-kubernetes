@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: magento-unpack
-        image: kiweeteam/magento2:vanilla-2.3.2-php7.2-fpm
+        image: hershkoy/magento-phpfpm:v2.3.3-php7.2
         command: ["/bin/sh"]
         args:
         - -c

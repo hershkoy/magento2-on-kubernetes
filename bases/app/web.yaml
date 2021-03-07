@@ -39,7 +39,7 @@ spec:
         k8s-app: magento
     spec:
       containers:
-      - image: nginx:mainline
+      - image: nginx:1.17
         imagePullPolicy: Always
         name: magento-web
         ports:

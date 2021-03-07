@@ -39,9 +39,13 @@ spec:
         app: magento-php
         k8s-app: magento
     spec:
+      # securityContext:
+      #   runAsUser: 33
+      #   runAsGroup: 33
+      #   fsGroup: 33    
       containers:
-      - image: kiweeteam/magento2:vanilla-2.3.2-php7.2-fpm
-        imagePullPolicy: IfNotPresent
+      - image: hershkoy/magento-phpfpm:v2.3.3-php7.2
+        imagePullPolicy: Always
         name: magento-php
         ports:
         - containerPort: 9000
