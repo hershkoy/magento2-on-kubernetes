@@ -68,11 +68,11 @@ spec:
           timeoutSeconds: 1
         resources:
           limits:
-            cpu: 250m
-            memory: 1Gi
+            cpu: 750m
+            memory: 4Gi
           requests:
-            cpu: 250m
-            memory: 1Gi
+            cpu: 750m
+            memory: 4Gi
         envFrom:
         - configMapRef:
             name: config

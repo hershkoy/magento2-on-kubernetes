@@ -4,11 +4,13 @@
 
 MAGENTO_COMMAND="magento-command"
 
+composer self-update 1.10.18
+
 if [ ! -f "$MAGENTO_ROOT/composer.json" ]; then
     echo "Creating Magento ($M2SETUP_VERSION) project from composer"
 
     composer config -g http-basic.repo.magento.com $MAGENTO_PUBLIC_KEY $MAGENTO_PRIVATE_KEY
-    composer create-project \
+    php -d memory_limit=-1 /usr/local/bin/composer create-project \
         --repository-url=https://repo.magento.com/ \
         magento/project-community-edition=$M2SETUP_VERSION \
         --no-interaction \
@@ -23,16 +25,17 @@ if [ ! -f "$MAGENTO_ROOT/composer.json" ]; then
     fi
 else
     echo "Magento installation found in $MAGENTO_ROOT, installing composer dependencies"
-    composer --working-dir=$MAGENTO_ROOT install
+    php -d memory_limit=-1 /usr/local/bin/composer --working-dir=$MAGENTO_ROOT install
 fi
 
+echo "changing permissions"
 chown -R www-data:www-data $MAGENTO_ROOT
 
 if [ ! "$M2SETUP_INSTALL_DB" = "false" ]; then
 
     echo "Install Magento"
 
-    INSTALL_COMMAND="$MAGENTO_COMMAND setup:install \
+    INSTALL_COMMAND="php -d memory_limit=512M $MAGENTO_ROOT/bin/magento setup:install \
         --db-host=$M2SETUP_DB_HOST \
         --db-name=$M2SETUP_DB_NAME \
         --db-user=$M2SETUP_DB_USER \
