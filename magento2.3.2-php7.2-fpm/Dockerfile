@@ -42,7 +42,7 @@ RUN pecl install -o -f xdebug
 
 ENV PHP_MEMORY_LIMIT 2G
 ENV PHP_ENABLE_XDEBUG false
-ENV MAGENTO_ROOT /var/www/magento
+ENV MAGENTO_ROOT /var/www/html
 
 ENV DEBUG false
 ENV UPDATE_UID_GID false
@@ -97,6 +97,6 @@ RUN ["chmod", "+x", "/docker-entrypoint.sh"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-
+ADD composer.json composer.json
 
 CMD ["php-fpm", "-F"]
